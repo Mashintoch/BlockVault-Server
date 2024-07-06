@@ -1,10 +1,10 @@
-import UserModel from "../models/User";
+import User from "../models/User";
 import TryCatchErrorDecorator from "../decorators/TryCatchErrorDecorator";
 
 class UsersController {
   @TryCatchErrorDecorator
   static async index(req, res) {
-    const users = await UserModel.find().select("_id name email");
+    const users = await User.find().select("_id name email");
 
     res.json(users);
   }
