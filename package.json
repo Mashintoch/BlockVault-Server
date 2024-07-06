@@ -2,14 +2,14 @@
   "name": "blockvault",
   "version": "1.0.0",
   "description": "",
-  "main": "./app.js",
+  "main": "app.js",
   "scripts": {
     "test": "jest --watchAll",
     "clean": "rimraf build/",
     "build": "echo \"Vercel doesn't need a build script defined as it detects and builds automatically.\"",
-    "start": "cross-env NODE_ENV=production babel-node ./app.js",
-    "dev": "cross-env NODE_ENV=development node --trace-deprecation ... nodemon --exec babel-node ./app.js",
-    "debug": "cross-env NODE_ENV=development DEBUG=http,mail,express:* nodemon --exec babel-node ./app.js"
+    "start": "cross-env NODE_ENV=production node app.js",
+    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node app.js",
+    "debug": "cross-env NODE_ENV=development DEBUG=http,mail,express:* nodemon --exec babel-node app.js"
   },
   "author": "Paul Chibueze",
   "license": "ISC",

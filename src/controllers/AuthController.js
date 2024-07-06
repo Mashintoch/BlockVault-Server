@@ -1,4 +1,4 @@
-import UserModel from "../models/User";
+import User from "../models/User";
 import PasswordService from "../services/PasswordService";
 import ClientError from "../exceptions/ClientError";
 import TryCatchErrorDecorator from "../decorators/TryCatchErrorDecorator";
@@ -11,7 +11,7 @@ import config from "../configs/app";
 class AuthController {
   @TryCatchErrorDecorator
   static async signin(req, res) {
-    const user = await UserModel.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: req.body.email });
     if (!user) {
       throw new ClientError("User not found", 404);
     }
@@ -45,14 +45,14 @@ class AuthController {
 
   @TryCatchErrorDecorator
   static async signup(req, res) {
-    const isAlreadyUser = await UserModel.findOne({ email: req.body.email });
+    const isAlreadyUser = await User.findOne({ email: req.body.email });
     if (isAlreadyUser) {
       throw new ClientError("This email is already registered", 409);
     }
 
     const password = randomize.generateString(12);
 
-    const user = new UserModel({
+    const user = new User({
       name: req.body.name,
       email: req.body.email,
       password: await PasswordService.hashPassword(password),
@@ -89,7 +89,7 @@ class AuthController {
       throw new ClientError("Refresh token invalid or expired", 400);
     }
 
-    const user = await UserModel.findOne({ _id: verifyData.id });
+    const user = await User.findOne({ _id: verifyData.id });
 
     const isValid = await TokenService.checkRefreshTokenUser(
       user,
@@ -114,7 +114,7 @@ class AuthController {
 
   @TryCatchErrorDecorator
   static async logout(req, res, next) {
-    const user = await UserModel.findOne({ _id: req.userId });
+    const user = await User.findOne({ _id: req.userId });
     if (!user) {
       throw new AppError("UserId not found in request", 401);
     }
@@ -127,7 +127,7 @@ class AuthController {
 
   @TryCatchErrorDecorator
   static async restorePassword(req, res, next) {
-    const user = await UserModel.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: req.body.email });
 
     if (!user) {
       throw new ClientError("User not found", 404);
@@ -164,7 +164,7 @@ class AuthController {
       throw new ClientError("Refresh token invalid or expired", 400);
     }
 
-    const user = await UserModel.findOne({ _id: verifyData.id });
+    const user = await User.findOne({ _id: verifyData.id });
     const password = randomize.generateString(12);
 
     user.password = await PasswordService.hashPassword(password);
