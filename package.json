@@ -13,6 +13,7 @@
   },
   "author": "Paul Chibueze",
   "license": "ISC",
+  "type": "module",
   "devDependencies": {
     "@babel/cli": "^7.13.14",
     "@babel/core": "^7.13.14",
