@@ -1,50 +1,39 @@
-const { createLogger, format, transports } = require('winston');
-const path = require('path');
+/* eslint-disable import/no-extraneous-dependencies */
 
+const { createLogger, format, transports } = require("winston");
+const mongoose = require("mongoose");
+const { MongoDB } = require("winston-mongodb");
+const dotenv = require("dotenv");
 
-const root = path.join.bind(this, __dirname, "../../");
+dotenv.config();
 
-function formatParams(info) {
-  const { timestamp, level, message, ...args } = info;
-  const ts = timestamp.slice(0, 19).replace("T", " ");
+const DB_URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}`;
 
-  return `${ts} ${level}: ${message} ${
-    Object.keys(args).length ? JSON.stringify(args, "", "") : ""
-  }`;
-}
+mongoose.connect(DB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-const developmentFormat = format.combine(
-  format.colorize(),
-  format.timestamp(),
-  format.align(),
-  format.printf(formatParams)
-);
+const LogSchema = new mongoose.Schema({
+  level: String,
+  message: String,
+  timestamp: { type: Date, default: Date.now },
+});
 
-const productionFormat = format.combine(
-  format.timestamp(),
-  format.align(),
-  format.printf(formatParams)
-);
+const Log = mongoose.model("Log", LogSchema);
 
-let logger; //eslint-disable-line
-
-if (process.env.NODE_ENV !== "production") {
-  logger = createLogger({
-    level: "debug",
-    format: developmentFormat,
-    transports: [new transports.Console()]
-  });
-} else {
-  logger = createLogger({
-    level: "info",
-    format: productionFormat,
-    maxsize: 5242880, // 5MB
-    maxFiles: 5,
-    transports: [
-      new transports.File({ filename: root("logs/error.log"), level: "error" }),
-      new transports.File({ filename: root("logs/combined.log") })
-    ]
-  });
-}
+const logger = createLogger({
+  level: "info",
+  format: format.combine(format.timestamp(), format.json()),
+  transports: [
+    new transports.Console(), 
+    new MongoDB({
+      db: DB_URL,
+      collection: "logs",
+      options: { useNewUrlParser: true, useUnifiedTopology: true },
+      format: format.combine(format.timestamp(), format.json()),
+    }),
+  ],
+});
 
 module.exports = logger;
