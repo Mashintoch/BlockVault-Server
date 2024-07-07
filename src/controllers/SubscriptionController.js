@@ -11,7 +11,7 @@ mailchimp.setConfig({
 });
 
 class Subscription {
-  @TryCatchErrorDecorator
+  // @TryCatchErrorDecorator
   static async subscribe(req, res) {
     const { email } = req.body;
 

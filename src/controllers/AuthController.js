@@ -9,7 +9,7 @@ const randomize = require("../utils/randomize");
 const config = require("../configs/app");
 
 class AuthController {
-  @TryCatchErrorDecorator
+  // @TryCatchErrorDecorator
   static async signin(req, res) {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
@@ -43,7 +43,7 @@ class AuthController {
     });
   }
 
-  @TryCatchErrorDecorator
+  // @TryCatchErrorDecorator
   static async signup(req, res) {
     const isAlreadyUser = await User.findOne({ email: req.body.email });
     if (isAlreadyUser) {
@@ -77,7 +77,7 @@ class AuthController {
     res.json({ status: "success" });
   }
 
-  @TryCatchErrorDecorator
+  // @TryCatchErrorDecorator
   static async refreshTokens(req, res) {
     const refreshTokenRequest = req.body.refreshToken;
 
@@ -112,7 +112,7 @@ class AuthController {
     res.json({ accessToken, refreshToken });
   }
 
-  @TryCatchErrorDecorator
+  // @TryCatchErrorDecorator
   static async logout(req, res, next) {
     const user = await User.findOne({ _id: req.userId });
     if (!user) {
@@ -125,7 +125,7 @@ class AuthController {
     res.json({ status: "success" });
   }
 
-  @TryCatchErrorDecorator
+  // @TryCatchErrorDecorator
   static async restorePassword(req, res, next) {
     const user = await User.findOne({ email: req.body.email });
 
@@ -152,7 +152,7 @@ class AuthController {
     res.json({ status: "success" });
   }
 
-  @TryCatchErrorDecorator
+  // @TryCatchErrorDecorator
   static async confirmRestorePassword(req, res, next) {
     const tokenRequest = req.body.token;
 

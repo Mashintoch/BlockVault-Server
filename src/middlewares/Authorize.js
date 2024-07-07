@@ -3,7 +3,7 @@ const ClientError = require("../exceptions/ClientError")
 const TokenService = require("../services/TokenService")
 
 class Authorize {
-  @TryCatchErrorDecorator
+//   @TryCatchErrorDecorator
   static async check(req, res, next) {
     if (req.headers.authorization) {
       const token = req.headers.authorization.split(" ")[1];
