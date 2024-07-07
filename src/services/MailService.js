@@ -1,11 +1,12 @@
-import { MailComposer as KamilMailcomposer } from "kamil-mailcomposer";
-import mailgunModule from "mailgun-js";
-import fs from "fs";
-import path from "path";
-import ejs from "ejs-promise";
-import AppError from "../exceptions/AppError";
-import config from "../configs";
-import logger from "../utils/logger";
+const KamilMailcomposer = require("kamil-mailcomposer").MailComposer;
+const mailgunModule = require("mailgun-js");
+const fs = require("fs");
+const path = require("path");
+const ejs = require("ejs-promise");
+const AppError = require("../exceptions/AppError")
+const config = require("../configs/index")
+const logger = require("../utils/logger")
+
 
 const root = path.join.bind(this, __dirname, "../../");
 const srcPath = path.join.bind(this, __dirname, "../");
@@ -95,4 +96,4 @@ const sendWithTemplate = async (data, templateOptions) => {
   }
 };
 
-export default { send, sendWithTemplate };
+module.exports = { send, sendWithTemplate };

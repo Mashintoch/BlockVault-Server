@@ -1,5 +1,5 @@
-import dotenv from "dotenv";
-import path from "path";
+const path = require("path");
+const dotenv = require("dotenv");
 
 const root = path.join.bind(this, __dirname, "../../");
 dotenv.config({ path: root(".env") });
@@ -15,7 +15,7 @@ const expireRestore = process.env.EXPIRE_TOKEN_RESTORE_PASSWORD;
 
 const countTokenLimit = process.env.TOKEN_LIMIT_COUNT_DIVICE;
 
-export default {
+module.exports = {
   secretAccess,
   expireAccess,
   secretRefresh,

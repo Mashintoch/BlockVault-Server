@@ -1,5 +1,5 @@
-import app from "./app";
-import token from "./token";
-import mail from "./mail";
+const app = require("./app")
+const token = require("./token")
+const mail = require("./mail")
 
-export default { app, token, mail };
+module.exports = { app, token, mail };

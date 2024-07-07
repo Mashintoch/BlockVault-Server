@@ -1,14 +1,15 @@
-import mongoose, { Schema } from "mongoose";
-import uniqueValidator from "mongoose-unique-validator";
+const mongoose = require("mongoose");
+const uniqueValidator = require("mongoose-unique-validator");
 
-const refreshTokens = new Schema({
+
+const refreshTokens = new mongoose.Schema({
   token: {
     type: String,
     required: true
   }
 });
 
-const UserSchema = new Schema(
+const UserSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -37,4 +38,4 @@ const UserSchema = new Schema(
 mongoose.set("useCreateIndex", true);
 UserSchema.plugin(uniqueValidator);
 
-export default mongoose.model("User", UserSchema);
+module.exports = mongoose.model("User", UserSchema);

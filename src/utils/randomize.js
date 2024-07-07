@@ -1,9 +1,7 @@
-import randomize from "randomatic";
+const randomize = require("randomatic");
 
-const generateString = length => {
-  return randomize("Aa0", length);
-};
+const generateString = (length) => randomize("Aa0", length);
 
-export default {
-  generateString
+module.exports = {
+  generateString,
 };

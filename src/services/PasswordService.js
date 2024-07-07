@@ -1,5 +1,6 @@
-import bcrypt from "bcryptjs";
-import AppError from "../exceptions/AppError";
+const bcrypt = require("bcryptjs");
+const AppError = require("../exceptions/AppError")
+
 
 const checkPassword = async (password, passwordHash) => {
   try {
@@ -20,7 +21,7 @@ const hashPassword = async password => {
   }
 };
 
-export default {
+module.exports = {
   checkPassword,
   hashPassword
 };

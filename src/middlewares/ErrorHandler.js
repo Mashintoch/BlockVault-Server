@@ -1,10 +1,11 @@
-import httpErrors from "http-errors";
-import ValidationError from "../exceptions/ValidationError";
-import ClientError from "../exceptions/ClientError";
-import logger from "../utils/logger";
-import config from "../configs/app";
 
-export default function(err, req, res, next) {
+const httpErrors = require("http-errors");
+const ValidationError = require("../exceptions/ValidationError")
+const ClientError = require("../exceptions/ClientError")
+const logger = require("../utils/logger")
+const config = require("../configs/app")
+
+module.exports = function(err, req, res, next) {
   const status = err.status || 500;
   const httpError = httpErrors(status);
   const errorMessage = err.message || "Unknown error";
@@ -27,4 +28,4 @@ export default function(err, req, res, next) {
 
   res.status(status);
   res.json(response);
-}
+};

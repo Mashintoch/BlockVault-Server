@@ -1,4 +1,4 @@
-export default (target, propertyKey, descriptor) => {
+module.exports = (target, propertyKey, descriptor) => {
   const fn = descriptor.value;
 
   return {

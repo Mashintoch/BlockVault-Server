@@ -1,6 +1,6 @@
-import TryCatchErrorDecorator from "../decorators/TryCatchErrorDecorator";
-import ClientError from "../exceptions/ClientError";
-import TokenService from "../services/TokenService";
+const TryCatchErrorDecorator = require("../decorators/TryCatchErrorDecorator")
+const ClientError = require("../exceptions/ClientError")
+const TokenService = require("../services/TokenService")
 
 class Authorize {
   @TryCatchErrorDecorator
@@ -26,4 +26,4 @@ class Authorize {
   }
 }
 
-export default Authorize;
+module.exports = Authorize;

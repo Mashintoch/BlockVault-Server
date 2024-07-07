@@ -1,5 +1,6 @@
-import dotenv from "dotenv";
-import path from "path";
+const dotenv = require("dotenv");
+const path = require("path");
+
 
 const root = path.join.bind(this, __dirname, "../../");
 dotenv.config({ path: root(".env") });
@@ -20,7 +21,7 @@ if (!MAILCHIMP_API_KEY || !MAILCHIMP_AUDIENCE_ID || !MAILCHIMP_SERVER) {
   );
 }
 
-export default {
+module.exports ={
   host: process.env.HOST,
   port: process.env.PORT,
   frontendHost: process.env.FRONTEND_HOST,

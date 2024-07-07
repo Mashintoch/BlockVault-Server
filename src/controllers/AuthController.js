@@ -1,12 +1,12 @@
-import User from "../models/User";
-import PasswordService from "../services/PasswordService";
-import ClientError from "../exceptions/ClientError";
-import TryCatchErrorDecorator from "../decorators/TryCatchErrorDecorator";
-import TokenService from "../services/TokenService";
-import AppError from "../exceptions/AppError";
-import MailService from "../services/MailService";
-import randomize from "../utils/randomize";
-import config from "../configs/app";
+const User = require("../models/User");
+const PasswordService = require("../services/PasswordService");
+const ClientError = require("../exceptions/ClientError");
+const TryCatchErrorDecorator = require("../decorators/TryCatchErrorDecorator");
+const TokenService = require("../services/TokenService");
+const AppError = require("../exceptions/AppError");
+const MailService = require("../services/MailService");
+const randomize = require("../utils/randomize");
+const config = require("../configs/app");
 
 class AuthController {
   @TryCatchErrorDecorator
@@ -187,4 +187,4 @@ class AuthController {
   }
 }
 
-export default AuthController;
+module.exports = AuthController;
