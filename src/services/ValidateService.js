@@ -1,7 +1,8 @@
-import Ajv from "ajv";
-import AjvErrors from "ajv-errors";
-import ValidationError from "../exceptions/ValidationError";
-import AppError from "../exceptions/AppError";
+const Ajv = require("ajv");
+const AjvErrors = require("ajv-errors");
+const ValidationError = require("../exceptions/ValidationError")
+const AppError = require("../exceptions/AppError")
+
 
 const normaliseErrorMessages = errors => {
   const fields = errors.reduce((acc, e) => {
@@ -42,4 +43,4 @@ const validate = async (data, schema) => {
   }
 };
 
-export default { validate };
+module.exports = { validate };

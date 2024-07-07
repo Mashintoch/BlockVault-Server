@@ -1,9 +1,9 @@
-import { Router } from "express";
-import UsersController from "../controllers/UsersController";
-import Authorize from "../middlewares/Authorize";
+const { Router } = require("express");
+const { Index } = require("../controllers/UsersController");
+const Authorize = require("../middlewares/Authorize");
 
 const router = Router();
 
-router.get("/", Authorize.check, UsersController.index);
+router.get("/", Authorize.check, Index);
 
-export default router;
+module.exports = router;

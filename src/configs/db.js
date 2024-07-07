@@ -1,5 +1,6 @@
-import { connect, set } from "mongoose";
-import dotenv from "dotenv";
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+
 
 dotenv.config();
 
@@ -7,8 +8,8 @@ const DB_URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${pr
 
 const connection = async () => {
   try {
-    set("strictQuery", true);
-    await connect(DB_URL, {
+    mongoose.set("strictQuery", true);
+    await mongoose.connect(DB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
@@ -18,4 +19,4 @@ const connection = async () => {
   }
 };
 
-export default connection;
+module.exports = connection;

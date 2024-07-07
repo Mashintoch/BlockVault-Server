@@ -4,23 +4,21 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "jest --watchAll",
     "clean": "rimraf build/",
     "build": "echo \"Vercel doesn't need a build script defined as it detects and builds automatically.\"",
-    "start": "cross-env NODE_ENV=production node app.js",
-    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node app.js",
-    "debug": "cross-env NODE_ENV=development DEBUG=http,mail,express:* nodemon --exec babel-node app.js"
+    "start": "cross-env NODE_ENV=production node build/app.js",
+    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node app.js"
   },
+
   "author": "Paul Chibueze",
   "license": "ISC",
-  "type": "module",
   "devDependencies": {
-    "@babel/cli": "^7.13.14",
-    "@babel/core": "^7.13.14",
-    "@babel/node": "^7.13.13",
-    "@babel/plugin-proposal-decorators": "^7.13.5",
+    "@babel/cli": "^7.24.7",
+    "@babel/core": "^7.24.7",
+    "@babel/node": "^7.24.7",
+    "@babel/plugin-proposal-decorators": "^7.24.7",
     "@babel/plugin-transform-runtime": "^7.13.10",
-    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-env": "^7.24.7",
     "babel-eslint": "^10.0.1",
     "cross-env": "^7.0.3",
     "eslint": "^7.23.0",

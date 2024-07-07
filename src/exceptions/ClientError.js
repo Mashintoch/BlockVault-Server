@@ -5,4 +5,4 @@ class ClientError extends Error {
   }
 }
 
-export default ClientError;
+module.exports = ClientError;

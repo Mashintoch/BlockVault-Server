@@ -87,7 +87,7 @@ const confirmRestorePassword = {
   }
 };
 
-export default {
+module.exports ={
   signin,
   signup,
   refreshTokens,

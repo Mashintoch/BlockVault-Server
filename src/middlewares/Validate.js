@@ -1,4 +1,5 @@
-import ValidateService from "../services/ValidateService";
+/* eslint-disable import/extensions */
+const ValidateService = require("../services/ValidateService")
 
 class Validate {
   static prepare(schema, keyValidate = "body") {
@@ -13,4 +14,4 @@ class Validate {
   }
 }
 
-export default Validate;
+module.exports = Validate;

@@ -1,5 +1,6 @@
-import { createLogger, format, transports } from "winston";
-import path from "path";
+const { createLogger, format, transports } = require('winston');
+const path = require('path');
+
 
 const root = path.join.bind(this, __dirname, "../../");
 
@@ -46,4 +47,4 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 
-export default logger;
+module.exports = logger;

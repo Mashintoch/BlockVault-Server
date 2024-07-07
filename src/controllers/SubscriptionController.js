@@ -1,9 +1,9 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import mailchimp from "@mailchimp/mailchimp_marketing";
-import ClientError from "../exceptions/ClientError";
-import TryCatchErrorDecorator from "../decorators/TryCatchErrorDecorator";
-import config from "../configs/app";
-import Waitlist from "../models/Subscribers";
+const mailchimp = require("@mailchimp/mailchimp_marketing")
+const ClientError = require("../exceptions/ClientError")
+const TryCatchErrorDecorator = require("../decorators/TryCatchErrorDecorator")
+const config = require("../configs/app")
+const Waitlist = require("../models/Subscriber")
+
 
 mailchimp.setConfig({
   apiKey: config.MAILCHIMP_API_KEY,
@@ -44,4 +44,4 @@ class Subscription {
   }
 }
 
-export default Subscription;
+module.exports = Subscription;

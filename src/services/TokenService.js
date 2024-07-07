@@ -1,7 +1,8 @@
-import jwt from "jsonwebtoken";
-import mongoose from "mongoose";
-import config from "../configs/token";
-import AppError from "../exceptions/AppError";
+const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
+const config = require("../configs/token");
+const AppError = require("../exceptions/AppError")
+
 
 const sign = async (playload, secretToken, options) => {
   try {
@@ -155,7 +156,7 @@ const checkRefreshTokenUser = async (user, token) => {
   }
 };
 
-export default {
+module.exports = {
   sign,
   createAccessToken,
   createRefreshToken,

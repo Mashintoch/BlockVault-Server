@@ -1,12 +1,12 @@
-import express from "express";
-import bodyParser from "body-parser";
-import cors from "cors";
-import morgan from "morgan";
-import httpError from "http-errors";
-import routes from "./src/routes";
-import errorHandler from "./src/middlewares/ErrorHandler";
-import config from "./src/configs/app";
-import connection from "./src/configs/db";
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const morgan = require("morgan");
+const httpError = require("http-errors");
+const routes = require("./src/routes/index");
+const errorHandler = require("./src/middlewares/ErrorHandler");
+const config = require("./src/configs/app");
+const connection = require("./src/configs/db");
 
 const app = express();
 
@@ -20,8 +20,8 @@ app.use(cors());
 app.get("/api/v1", (req, res) => {
   res.status(200).json({
     status: "success",
-    message: "Welcome to BlockVault API"
-  })
+    message: "Welcome to BlockVault API",
+  });
 });
 
 app.use("/api", routes);
